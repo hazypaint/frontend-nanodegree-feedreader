@@ -87,11 +87,11 @@ $(function() {
          */
 
         beforeEach(function(done) {
-                loadFeed(0, done);
+            loadFeed(0, done);
         });
 
         it('should have at least 1 entry in the feed container', function(done) {
-            expect($('.entry').length).not.toBe(0);
+            expect($('.entry').length).toBeGreaterThan(0);
             done();
         });
 
@@ -104,20 +104,21 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-
-        // beforeEach(function(done) {
-        //     loadFeed(0);
-        //     loadFeed(1);
-        //     done();
-        // });
-            
-        //     it('should check if content actually changes', function() {
-        //         var first = $('.feed a:nth-child(1)')[0];
-        //         console.log(first);
-        //         var second = $('.feed a:nth-child(2)')[0];
-        //         expect(first).not.toEqual(second);
-        //     });
-
+        var currentTitle = $('.header-title').html();
+        beforeEach(function(done) {
+            loadFeed(1, done);
+        });
+        
+        afterEach(function(done) {
+            loadFeed(0, done);
+        });
+        
+        it('should check if content actually changes', function() {
+            // var first = $('.feed a:nth-child(1)')[0];
+            // console.log(first);
+            // var second = $('.feed a:nth-child(2)')[0];
+            expect($('.header-title').html()).not.toBe(currentTitle);
+        });
 
     });
 }());
