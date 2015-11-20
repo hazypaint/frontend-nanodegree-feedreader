@@ -26,7 +26,6 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
@@ -50,7 +49,6 @@ $(function() {
          });
     });
 
-
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
 
@@ -62,13 +60,14 @@ $(function() {
         it('is hidden by default', function() {
             expect($('body').hasClass('menu-hidden')).toBe(true);
         });
+
         /* TODO: Write a test that ensures the menu changes
          * visibility when the menu icon is clicked. This test
          * should have two expectations: does the menu display when
          * clicked and does it hide when clicked again.
          */
 
-         it('hiding/showing on click works', function() {
+         it('is hiding and showing on click', function() {
             $('.menu-icon-link').trigger('click');
             expect($('body').hasClass('menu-hidden')).not.toBe(true);
             $('.menu-icon-link').trigger('click');
@@ -94,8 +93,6 @@ $(function() {
             expect($('.entry').length).toBeGreaterThan(0);
             done();
         });
-
-
     });
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
@@ -106,17 +103,14 @@ $(function() {
          */
         var currentTitle = $('.header-title').html();
         beforeEach(function(done) {
-            loadFeed(1, done);
+            loadFeed(1, done);  // loads a new feed
         });
         
         afterEach(function(done) {
-            loadFeed(0, done);
+            loadFeed(0, done);  // returns to original feed after content change has been tested
         });
-        
+
         it('should check if content actually changes', function() {
-            // var first = $('.feed a:nth-child(1)')[0];
-            // console.log(first);
-            // var second = $('.feed a:nth-child(2)')[0];
             expect($('.header-title').html()).not.toBe(currentTitle);
         });
 
