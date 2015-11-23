@@ -65,7 +65,7 @@ $(function() {
             expect($('body').hasClass('menu-hidden')).toBeFalsy();
             $('.menu-icon-link').trigger('click');
             expect($('body').hasClass('menu-hidden')).toBeTruthy();
-         })
+         });
     });
 
     /* This test suite is named "Initial Entries" */
@@ -102,13 +102,13 @@ $(function() {
             });
         });
 
-        /* using afterEach (var  =  0 or null) to refresh feed container 
+        /* restores default status to refresh feed container 
          * and keep test from being impacted by leftover content from 
-         * previous test, using .empty() kept breaking the code
+         * previous test
          */
 
-        afterEach(function() {
-            oldContent = 0;
+        afterAll(function(done){
+            loadFeed(0, done);
         });
 
         /* use expect to see if the newly chosen .feed is different 
@@ -116,7 +116,7 @@ $(function() {
          */
         it('displays new content', function() {
             expect($('.feed').html()).not.toBe(oldContent);
-        }, 2000);
+        });
 
     });
 }());
